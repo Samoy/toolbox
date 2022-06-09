@@ -19,9 +19,13 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         primarySwatch: Colors.orange,
       ),
-      home: IndexPage(
-        title: _title,
-      ),
+      home: SafeArea(
+          top: false,
+          right: false,
+          bottom: false,
+          child: IndexPage(
+            title: _title,
+          )),
     );
   }
 }
