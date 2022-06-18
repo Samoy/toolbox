@@ -29,6 +29,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  ffmpeg_kit_flutter: ^4.5.1
+  path_provider: ^2.0.11
+  go_router: ^4.0.0
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:toolbox/pages/home/index.dart';
+import 'package:toolbox/pages/image/index.dart';
+import 'package:toolbox/pages/video/index.dart';
 
 class IndexPage extends StatefulWidget {
-  final String title;
-
-  const IndexPage({Key? key, required, required this.title}) : super(key: key);
+  const IndexPage({Key? key, required}) : super(key: key);
 
   @override
   State<IndexPage> createState() => _IndexState();
@@ -15,35 +16,37 @@ class _IndexState extends State<IndexPage> {
     const _MenuModel(
         icon: Icon(Icons.home_outlined),
         selectedIcon: Icon(Icons.home),
-        title: "首页"),
+        title: "首页",
+        widget: HomePage()),
     const _MenuModel(
       icon: Icon(Icons.image_outlined),
       selectedIcon: Icon(Icons.image),
       title: "图片",
+      widget: ImagePage(),
     ),
     const _MenuModel(
       icon: Icon(Icons.video_file_outlined),
       selectedIcon: Icon(Icons.video_file),
       title: "视频",
+      widget: VideoPage(),
     ),
-    const _MenuModel(
-        icon: Icon(Icons.person_outline),
-        selectedIcon: Icon(Icons.person),
-        title: "我的")
   ];
 
   @override
   Widget build(BuildContext context) {
-    return OrientationBuilder(
-        builder: (BuildContext context, Orientation orientation) {
-      if (orientation == Orientation.portrait) {
-        return Scaffold(
+    var selected = _menuList[_selectedIndex];
+    return SafeArea(
+      top: false,
+      right: false,
+      bottom: false,
+      child: OrientationBuilder(
+          builder: (BuildContext context, Orientation orientation) {
+        if (orientation == Orientation.portrait) {
+          return Scaffold(
             appBar: AppBar(
-              title: Text(widget.title),
+              title: Text(selected.title),
             ),
-            body: Center(
-              child: Text('selectedIndex: $_selectedIndex'),
-            ),
+            body: selected.widget,
             bottomNavigationBar: BottomNavigationBar(
               items: _menuList
                   .map((e) => BottomNavigationBarItem(
@@ -56,43 +59,48 @@ class _IndexState extends State<IndexPage> {
                   _selectedIndex = index;
                 });
               },
-            ));
-      }
-      return Scaffold(
-        body: Row(
-          children: <Widget>[
-            NavigationRail(
-              selectedIndex: _selectedIndex,
-              onDestinationSelected: (int index) {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              },
-              labelType: NavigationRailLabelType.all,
-              destinations: _menuList
-                  .map((e) => NavigationRailDestination(
-                      icon: e.icon,
-                      selectedIcon: e.selectedIcon,
-                      label: Text(e.title)))
-                  .toList(),
             ),
-            const VerticalDivider(thickness: 1, width: 1),
-            Expanded(
-              child: Center(
-                child: Text('selectedIndex: $_selectedIndex'),
+          );
+        }
+        return Scaffold(
+          body: Row(
+            children: <Widget>[
+              NavigationRail(
+                selectedIndex: _selectedIndex,
+                onDestinationSelected: (int index) {
+                  setState(() {
+                    _selectedIndex = index;
+                  });
+                },
+                labelType: NavigationRailLabelType.all,
+                destinations: _menuList
+                    .map((e) => NavigationRailDestination(
+                        icon: e.icon,
+                        selectedIcon: e.selectedIcon,
+                        label: Text(e.title)))
+                    .toList(),
               ),
-            )
-          ],
-        ),
-      );
-    });
+              const VerticalDivider(thickness: 1, width: 1),
+              Expanded(
+                child: selected.widget,
+              ),
+            ],
+          ),
+        );
+      }),
+    );
   }
 }
 
 class _MenuModel {
-  const _MenuModel(
-      {required this.icon, this.selectedIcon, required this.title});
+  const _MenuModel({
+    required this.icon,
+    required this.title,
+    required this.widget,
+    this.selectedIcon,
+  });
   final Icon icon;
-  final Icon? selectedIcon;
   final String title;
+  final Widget widget;
+  final Icon? selectedIcon;
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toolbox/pages/index.dart';
+import 'package:toolbox/router/router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,19 +13,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    // return MaterialApp(
+
+    // );
+    return MaterialApp.router(
+      routeInformationParser: gRouter.routeInformationParser,
+      routerDelegate: gRouter.routerDelegate,
+      routeInformationProvider: gRouter.routeInformationProvider,
       title: _title,
       theme: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.orange,
+        primarySwatch: Colors.green,
       ),
-      home: SafeArea(
-          top: false,
-          right: false,
-          bottom: false,
-          child: IndexPage(
-            title: _title,
-          )),
     );
   }
 }
