@@ -12,19 +12,19 @@ class IndexPage extends StatefulWidget {
 
 class _IndexState extends State<IndexPage> {
   int _selectedIndex = 0;
-  final List<_MenuModel> _menuList = [
-    const _MenuModel(
+  final List<MenuModel> _menuList = [
+    const MenuModel(
         icon: Icon(Icons.home_outlined),
         selectedIcon: Icon(Icons.home),
         title: "首页",
         widget: HomePage()),
-    const _MenuModel(
+    const MenuModel(
       icon: Icon(Icons.image_outlined),
       selectedIcon: Icon(Icons.image),
       title: "图片",
       widget: ImagePage(),
     ),
-    const _MenuModel(
+    const MenuModel(
       icon: Icon(Icons.video_file_outlined),
       selectedIcon: Icon(Icons.video_file),
       title: "视频",
@@ -34,7 +34,7 @@ class _IndexState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    var selected = _menuList[_selectedIndex];
+    MenuModel selectedMenu = _menuList[_selectedIndex];
     return SafeArea(
       top: false,
       right: false,
@@ -44,9 +44,9 @@ class _IndexState extends State<IndexPage> {
         if (orientation == Orientation.portrait) {
           return Scaffold(
             appBar: AppBar(
-              title: Text(selected.title),
+              title: Text(selectedMenu.title),
             ),
-            body: selected.widget,
+            body: selectedMenu.widget,
             bottomNavigationBar: BottomNavigationBar(
               items: _menuList
                   .map((e) => BottomNavigationBarItem(
@@ -82,7 +82,7 @@ class _IndexState extends State<IndexPage> {
               ),
               const VerticalDivider(thickness: 1, width: 1),
               Expanded(
-                child: selected.widget,
+                child: selectedMenu.widget,
               ),
             ],
           ),
@@ -92,8 +92,8 @@ class _IndexState extends State<IndexPage> {
   }
 }
 
-class _MenuModel {
-  const _MenuModel({
+class MenuModel {
+  const MenuModel({
     required this.icon,
     required this.title,
     required this.widget,
