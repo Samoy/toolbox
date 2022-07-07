@@ -14,10 +14,11 @@ class _IndexState extends State<IndexPage> {
   int _selectedIndex = 0;
   final List<MenuModel> _menuList = [
     const MenuModel(
-        icon: Icon(Icons.home_outlined),
-        selectedIcon: Icon(Icons.home),
-        title: "首页",
-        widget: HomePage()),
+      icon: Icon(Icons.home_outlined),
+      selectedIcon: Icon(Icons.home),
+      title: "首页",
+      widget: HomePage(),
+    ),
     const MenuModel(
       icon: Icon(Icons.image_outlined),
       selectedIcon: Icon(Icons.image),
