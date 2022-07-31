@@ -31,6 +31,12 @@ class _IndexState extends State<IndexPage> {
       title: "视频",
       widget: VideoPage(),
     ),
+    const MenuModel(
+      icon: Icon(Icons.person_outline),
+      selectedIcon: Icon(Icons.person),
+      title: "我的",
+      widget: VideoPage(),
+    ),
   ];
 
   @override
