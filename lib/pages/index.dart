@@ -12,26 +12,26 @@ class IndexPage extends StatefulWidget {
 
 class _IndexState extends State<IndexPage> {
   int _selectedIndex = 0;
-  final List<MenuModel> _menuList = [
-    const MenuModel(
+  final List<TabModel> _tabList = [
+    const TabModel(
       icon: Icon(Icons.home_outlined),
       selectedIcon: Icon(Icons.home),
       title: "首页",
       widget: HomePage(),
     ),
-    const MenuModel(
+    const TabModel(
       icon: Icon(Icons.image_outlined),
       selectedIcon: Icon(Icons.image),
       title: "图片",
       widget: ImagePage(),
     ),
-    const MenuModel(
+    const TabModel(
       icon: Icon(Icons.video_file_outlined),
       selectedIcon: Icon(Icons.video_file),
       title: "视频",
       widget: VideoPage(),
     ),
-    const MenuModel(
+    const TabModel(
       icon: Icon(Icons.person_outline),
       selectedIcon: Icon(Icons.person),
       title: "我的",
@@ -41,7 +41,7 @@ class _IndexState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    MenuModel selectedMenu = _menuList[_selectedIndex];
+    TabModel selectedMenu = _tabList[_selectedIndex];
     return SafeArea(
       top: false,
       right: false,
@@ -50,12 +50,9 @@ class _IndexState extends State<IndexPage> {
           builder: (BuildContext context, Orientation orientation) {
         if (orientation == Orientation.portrait) {
           return Scaffold(
-            appBar: AppBar(
-              title: Text(selectedMenu.title),
-            ),
             body: selectedMenu.widget,
             bottomNavigationBar: BottomNavigationBar(
-              items: _menuList
+              items: _tabList
                   .map((e) => BottomNavigationBarItem(
                       icon: e.icon, activeIcon: e.selectedIcon, label: e.title))
                   .toList(),
@@ -80,14 +77,16 @@ class _IndexState extends State<IndexPage> {
                   });
                 },
                 labelType: NavigationRailLabelType.all,
-                destinations: _menuList
-                    .map((e) => NavigationRailDestination(
+                destinations: _tabList
+                    .map(
+                      (e) => NavigationRailDestination(
                         icon: e.icon,
                         selectedIcon: e.selectedIcon,
-                        label: Text(e.title)))
+                        label: Text(e.title),
+                      ),
+                    )
                     .toList(),
               ),
-              const VerticalDivider(thickness: 1, width: 1),
               Expanded(
                 child: selectedMenu.widget,
               ),
@@ -99,13 +98,14 @@ class _IndexState extends State<IndexPage> {
   }
 }
 
-class MenuModel {
-  const MenuModel({
+class TabModel {
+  const TabModel({
     required this.icon,
     required this.title,
     required this.widget,
     this.selectedIcon,
   });
+
   final Icon icon;
   final String title;
   final Widget widget;

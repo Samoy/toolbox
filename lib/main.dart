@@ -13,15 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routeInformationParser: gRouter.routeInformationParser,
-      routerDelegate: gRouter.routerDelegate,
-      routeInformationProvider: gRouter.routeInformationProvider,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
+      routeInformationProvider: router.routeInformationProvider,
       title: _title,
       theme: ThemeData(
-        useMaterial3: true,
-        primarySwatch: Colors.green,
-        fontFamily: "HanYi"
-      ),
+          useMaterial3: true, primarySwatch: Colors.green, fontFamily: "HanYi"),
     );
   }
 }
