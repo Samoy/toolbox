@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       routeInformationProvider: router.routeInformationProvider,
       title: _title,
       theme: ThemeData(
-        primarySwatch: Colors.lightGreen,
+        primarySwatch: Colors.green,
         useMaterial3: true,
         fontFamily: "HanYi",
         scaffoldBackgroundColor: Colors.white,

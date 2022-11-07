@@ -4,3 +4,5 @@ const double normalPadding = 16;
 const double normalMargin = 16;
 /// 通用边框宽度[normalBorderWidth]为1
 const double normalBorderWidth = 1;
+/// App bar高度
+const double appBarExpendHeight = 160;

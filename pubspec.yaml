@@ -32,6 +32,7 @@ dependencies:
   ffmpeg_kit_flutter: ^4.5.1
   path_provider: ^2.0.11
   go_router: ^4.0.0
+  flutter_svg: ^1.1.6
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -60,6 +61,8 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/images/
   fonts:
     - family: HanYi
       fonts:
