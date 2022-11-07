@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:toolbox/enum/menu_type.dart';
+import 'package:toolbox/widgets/menu_list.dart';
 
 class VideoPage extends StatefulWidget {
   const VideoPage({Key? key}) : super(key: key);
@@ -10,8 +12,9 @@ class VideoPage extends StatefulWidget {
 class _VideoPageState extends State<VideoPage> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("视频"),
+    return const MenuListWidget(
+      title: "视频工具",
+      menuType: MenuType.video,
     );
   }
 }

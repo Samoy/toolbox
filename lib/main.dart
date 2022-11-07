@@ -18,7 +18,15 @@ class MyApp extends StatelessWidget {
       routeInformationProvider: router.routeInformationProvider,
       title: _title,
       theme: ThemeData(
-          useMaterial3: true, primarySwatch: Colors.green, fontFamily: "HanYi"),
+        primarySwatch: Colors.lightGreen,
+        useMaterial3: true,
+        fontFamily: "HanYi",
+        scaffoldBackgroundColor: Colors.white,
+        bottomNavigationBarTheme:
+            Theme.of(context).bottomNavigationBarTheme.copyWith(
+                  backgroundColor: Colors.white,
+                ),
+      ),
     );
   }
 }

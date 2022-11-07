@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolbox/pages/home/index.dart';
 import 'package:toolbox/pages/image/index.dart';
+import 'package:toolbox/pages/text/index.dart';
 import 'package:toolbox/pages/video/index.dart';
 
 class IndexPage extends StatefulWidget {
@@ -20,6 +21,12 @@ class _IndexState extends State<IndexPage> {
       widget: HomePage(),
     ),
     const TabModel(
+      icon: Icon(Icons.text_fields_outlined),
+      selectedIcon: Icon(Icons.text_fields),
+      title: "文本",
+      widget: TextPage(),
+    ),
+    const TabModel(
       icon: Icon(Icons.image_outlined),
       selectedIcon: Icon(Icons.image),
       title: "图片",
@@ -29,12 +36,6 @@ class _IndexState extends State<IndexPage> {
       icon: Icon(Icons.video_file_outlined),
       selectedIcon: Icon(Icons.video_file),
       title: "视频",
-      widget: VideoPage(),
-    ),
-    const TabModel(
-      icon: Icon(Icons.person_outline),
-      selectedIcon: Icon(Icons.person),
-      title: "我的",
       widget: VideoPage(),
     ),
   ];
