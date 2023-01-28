@@ -37,7 +37,7 @@ final List<Menu> globalMenus = [
     "/image/exif",
     true,
     MenuType.image.index,
-    icon: "assets/images/image_edit.svg",
+    icon: "assets/images/image_exif.svg",
   ),
   Menu(
     keyGetImageExif,
@@ -45,7 +45,7 @@ final List<Menu> globalMenus = [
     "/image/edit",
     true,
     MenuType.image.index,
-    icon: "assets/images/image_exif.svg",
+    icon: "assets/images/image_edit.svg",
   ),
   // 视频类
   Menu(

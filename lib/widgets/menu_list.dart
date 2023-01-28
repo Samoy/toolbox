@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:toolbox/common/dimens.dart';
 import 'package:toolbox/common/menus.dart';
 import 'package:toolbox/enum/menu_type.dart';
@@ -37,31 +38,11 @@ class _MenuListWidgetState extends State<MenuListWidget> {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            expandedHeight: 160.0,
+            expandedHeight: 120.0,
             pinned: true,
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.menu,
-                  color: Colors.white,
-                ),
-              )
-            ],
             flexibleSpace: FlexibleSpaceBar(
-              background: Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Colors.green,
-                      Colors.lightGreen,
-                      Colors.lightGreenAccent,
-                    ],
-                  ),
-                ),
-              ),
+              background: Lottie.asset("assets/lotties/banner.json",
+                  width: double.infinity, fit: BoxFit.cover),
               title: Text(widget.title),
               titlePadding: const EdgeInsets.all(normalPadding),
             ),
@@ -71,14 +52,15 @@ class _MenuListWidgetState extends State<MenuListWidget> {
               (BuildContext context, int index) {
                 var menu = _menuList[index];
                 return ListTile(
-                  iconColor: Colors.lightGreen,
                   leading: menu.icon != null
                       ? SvgPicture.asset(
                           menu.icon!,
                           width: 24,
                           height: 24,
                         )
-                      : const Icon(Icons.menu),
+                      : const Icon(
+                          Icons.menu,
+                        ),
                   title: Text(menu.name),
                   onTap: () {
                     debugPrint("当前菜单:${menu.name}");
