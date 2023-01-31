@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lottie/lottie.dart';
-import 'package:toolbox/common/dimens.dart';
 import 'package:toolbox/common/menus.dart';
 import 'package:toolbox/enum/menu_type.dart';
 import 'package:toolbox/model/menu.dart';
@@ -37,15 +35,8 @@ class _MenuListWidgetState extends State<MenuListWidget> {
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
-          SliverAppBar(
-            expandedHeight: 120.0,
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Lottie.asset("assets/lotties/banner.json",
-                  width: double.infinity, fit: BoxFit.cover),
-              title: Text(widget.title),
-              titlePadding: const EdgeInsets.all(normalPadding),
-            ),
+          SliverAppBar.medium(
+            title: Text(widget.title),
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(

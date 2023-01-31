@@ -23,7 +23,7 @@ final List<Menu> globalMenus = [
     icon: "assets/images/reverse_text.svg",
   ),
   Menu(
-    keyReverseText,
+    keyCountText,
     "统计文本",
     "/text/count",
     true,

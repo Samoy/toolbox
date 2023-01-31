@@ -15,27 +15,31 @@ class _IndexState extends State<IndexPage> {
   int _selectedIndex = 0;
   final List<TabModel> _tabList = [
     const TabModel(
-      icon: Icon(Icons.home_outlined),
-      selectedIcon: Icon(Icons.home),
-      title: "首页",
+      color: Color(0xFFab65ee),
+      icon: Icons.home_outlined,
+      selectedIcon: Icons.home,
+      title: "Home",
       widget: HomePage(),
     ),
     const TabModel(
-      icon: Icon(Icons.text_fields_outlined),
-      selectedIcon: Icon(Icons.text_fields),
-      title: "文本",
+      color: Color(0xFFfeb500),
+      icon: Icons.text_fields_outlined,
+      selectedIcon: Icons.text_fields,
+      title: "Text",
       widget: TextPage(),
     ),
     const TabModel(
-      icon: Icon(Icons.image_outlined),
-      selectedIcon: Icon(Icons.image),
-      title: "图片",
+      color: Color(0xFFf86b96),
+      icon: Icons.image_outlined,
+      selectedIcon: Icons.image,
+      title: "Image",
       widget: ImagePage(),
     ),
     const TabModel(
-      icon: Icon(Icons.video_file_outlined),
-      selectedIcon: Icon(Icons.video_file),
-      title: "视频",
+      color: Color(0xFF50ccf8),
+      icon: Icons.video_file_outlined,
+      selectedIcon: Icons.video_file,
+      title: "Video",
       widget: VideoPage(),
     ),
   ];
@@ -52,14 +56,24 @@ class _IndexState extends State<IndexPage> {
         if (orientation == Orientation.portrait) {
           return Scaffold(
             body: selectedMenu.widget,
-            bottomNavigationBar: BottomNavigationBar(
-              items: _tabList
-                  .map((e) => BottomNavigationBarItem(
-                      icon: e.icon, activeIcon: e.selectedIcon, label: e.title))
+            bottomNavigationBar: NavigationBar(
+              selectedIndex: _selectedIndex,
+              destinations: _tabList
+                  .map(
+                    (e) => NavigationDestination(
+                      icon: Icon(
+                        e.icon,
+                        color: e.color,
+                      ),
+                      selectedIcon: Icon(
+                        e.selectedIcon,
+                        color: e.color,
+                      ),
+                      label: e.title,
+                    ),
+                  )
                   .toList(),
-              currentIndex: _selectedIndex,
-              type: BottomNavigationBarType.fixed,
-              onTap: (index) {
+              onDestinationSelected: (index) {
                 setState(() {
                   _selectedIndex = index;
                 });
@@ -81,8 +95,14 @@ class _IndexState extends State<IndexPage> {
                 destinations: _tabList
                     .map(
                       (e) => NavigationRailDestination(
-                        icon: e.icon,
-                        selectedIcon: e.selectedIcon,
+                        icon: Icon(
+                          e.icon,
+                          color: e.color,
+                        ),
+                        selectedIcon: Icon(
+                          e.selectedIcon,
+                          color: e.color,
+                        ),
                         label: Text(e.title),
                       ),
                     )
@@ -105,10 +125,12 @@ class TabModel {
     required this.title,
     required this.widget,
     this.selectedIcon,
+    this.color,
   });
 
-  final Icon icon;
+  final IconData icon;
   final String title;
   final Widget widget;
-  final Icon? selectedIcon;
+  final IconData? selectedIcon;
+  final Color? color;
 }
